@@ -55,7 +55,6 @@ func main() {
 	delimiter, _ := utf8.DecodeRuneInString(args.Delimiter)
 	reader.Comma = delimiter
 	reader.ReuseRecord = true
-	reader.TrimLeadingSpace = true
 
 	for {
 		_, err := reader.Read()
