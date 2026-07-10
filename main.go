@@ -18,7 +18,7 @@ var help = fmt.Sprintf(Help, version)
 
 type Args struct {
 	Cumulative bool
-	Quite      bool
+	Quiet      bool
 	Delimiter  string
 	Help       bool
 	Version    bool
@@ -26,8 +26,8 @@ type Args struct {
 
 func main() {
 	var args = Args{}
-	flag.BoolVar(&args.Cumulative, "c", false, "Collect and print a complete list of problems with a csv file (default: only first error found)")
-	flag.BoolVar(&args.Quite, "q", false, "Just exit with exit code 1")
+	flag.BoolVar(&args.Cumulative, "c", false, "Collect all csv errors and output the list at the end")
+	flag.BoolVar(&args.Quiet, "q", false, "Silently terminate with exit(1) upon the first error encountered in the csv")
 	flag.StringVar(&args.Delimiter, "d", ",", "Fields separator (default: comma)")
 	flag.BoolVar(&args.Help, "h", false, "Help")
 	flag.BoolVar(&args.Help, "help", false, "Alias for -h")
@@ -62,7 +62,7 @@ func main() {
 			break
 		}
 		if err != nil {
-			if args.Quite {
+			if args.Quiet {
 				PrintAndExit("", 1)
 			} else {
 				if args.Cumulative {
@@ -74,7 +74,7 @@ func main() {
 		}
 	}
 
-	if !args.Quite && args.Cumulative && errors_list.Len() > 0 {
+	if !args.Quiet && args.Cumulative && errors_list.Len() > 0 {
 		PrintAndExit(errors_list.String(), 1)
 	}
 }

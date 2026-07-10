@@ -1,4 +1,4 @@
-Fast and simple csv file checker. Just pipe csv content into it.
+A simple and fast CLI for checking CSV files for errors.
 
 
 ## Usage
@@ -11,8 +11,8 @@ csvchk [ -c ] [ -q ] < <file.csv>
 ## Options
 
 ```text
--c             Collect and print a complete list of problems with a csv file (default: only first error found)
--q             Just exit with exit code 1
+-c             Collect all csv errors and output the list at the end
+-q             Silently terminate with exit(1) upon the first error encountered in the CSV
 -d             Fields separator (default: comma)
 -h, --help     Help
 -v, --version  Version
