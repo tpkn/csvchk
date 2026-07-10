@@ -63,23 +63,20 @@ func main() {
 		}
 		if err != nil {
 			if args.Quiet {
-				PrintAndExit("", 1)
+				os.Exit(1)
 			} else {
 				if args.Cumulative {
 					errors_list.WriteString(err.Error() + "\n")
 				} else {
-					PrintAndExit(err.Error(), 1)
+					fmt.Print(err.Error())
+					os.Exit(1)
 				}
 			}
 		}
 	}
 
 	if !args.Quiet && args.Cumulative && errors_list.Len() > 0 {
-		PrintAndExit(errors_list.String(), 1)
+		fmt.Print(errors_list.String())
+		os.Exit(1)
 	}
-}
-
-func PrintAndExit(s string, code int) {
-	fmt.Print(s)
-	os.Exit(code)
 }
