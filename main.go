@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"runtime"
 	"strings"
 	"unicode/utf8"
 )
@@ -37,7 +36,6 @@ func main() {
 
 	log.SetFlags(0)
 	log.SetPrefix("csvchk: ")
-	runtime.GOMAXPROCS(2)
 
 	if args.Help {
 		fmt.Println(help)
